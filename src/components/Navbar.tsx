@@ -24,7 +24,7 @@ const Navbar = () => {
             <img 
               src={logo} 
               alt="C7AI Solutions Logo" 
-              className="h-20 w-20 object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-[100px] w-[100px] object-contain transition-transform duration-300 group-hover:scale-105"
             />
             <span className="text-xl font-bold tracking-tight">
               <span className="text-foreground">C7AI</span>
