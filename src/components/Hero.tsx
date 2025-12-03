@@ -1,5 +1,6 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ContactFormDialog from "@/components/ContactFormDialog";
 
 const Hero = () => {
   return (
@@ -40,12 +41,12 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up opacity-0 stagger-3">
-            <Button variant="hero" size="xl" asChild>
-              <a href="mailto:info@c7aisolutions.com" className="group">
+            <ContactFormDialog>
+              <Button variant="hero" size="xl" className="group">
                 Start Your AI Journey
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </a>
-            </Button>
+              </Button>
+            </ContactFormDialog>
             <Button variant="heroOutline" size="xl" asChild>
               <a href="#services">Explore Services</a>
             </Button>

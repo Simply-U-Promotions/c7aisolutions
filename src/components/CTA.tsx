@@ -1,5 +1,6 @@
 import { ArrowRight, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ContactFormDialog from "@/components/ContactFormDialog";
 
 const CTA = () => {
   return (
@@ -20,13 +21,13 @@ const CTA = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="hero" size="xl" asChild>
-              <a href="mailto:info@c7aisolutions.com" className="group">
+            <ContactFormDialog>
+              <Button variant="hero" size="xl" className="group">
                 <Mail className="w-5 h-5" />
                 Contact Us Today
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </a>
-            </Button>
+              </Button>
+            </ContactFormDialog>
           </div>
 
           {/* Contact Info */}

@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import ContactFormDialog from "@/components/ContactFormDialog";
 import { 
   Target, 
   Lightbulb, 
@@ -87,12 +88,12 @@ const About = () => {
                 business challenges to create solutions that don't just impress—they 
                 deliver real, measurable results.
               </p>
-              <Button variant="hero" size="lg" asChild>
-                <a href="mailto:info@c7aisolutions.com" className="group">
+              <ContactFormDialog>
+                <Button variant="hero" size="lg" className="group">
                   Let's Work Together
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                </a>
-              </Button>
+                </Button>
+              </ContactFormDialog>
             </div>
             
             {/* Stats/Highlights */}
@@ -153,11 +154,11 @@ const About = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
-              <Button variant="hero" size="xl" asChild>
-                <a href="mailto:info@c7aisolutions.com">
-                  info@c7aisolutions.com
-                </a>
-              </Button>
+              <ContactFormDialog>
+                <Button variant="hero" size="xl">
+                  Get in Touch
+                </Button>
+              </ContactFormDialog>
             </div>
 
             <p className="text-muted-foreground">
