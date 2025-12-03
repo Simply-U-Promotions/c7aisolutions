@@ -5,6 +5,7 @@ import {
   Bot, 
   Link2, 
   Search,
+  ClipboardList,
   ArrowUpRight
 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -45,6 +46,12 @@ const services = [
     title: "Next-Gen SEO Optimization",
     description: "AI-driven SEO strategies that boost visibility, analyze competitors, and continuously optimize for search performance.",
     gradient: "from-rose-500 to-red-500"
+  },
+  {
+    icon: ClipboardList,
+    title: "Program & Project Management",
+    description: "Expert program and project management services to deliver complex initiatives on time, within scope, and on budget.",
+    gradient: "from-slate-500 to-zinc-600"
   }
 ];
 
