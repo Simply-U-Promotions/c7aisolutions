@@ -7,6 +7,7 @@ import {
   Search,
   ArrowUpRight
 } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const services = [
   {
@@ -55,41 +56,43 @@ const Services = () => {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-            Our <span className="gradient-text">Services</span>
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Comprehensive AI and technology solutions designed to accelerate your business growth and competitive advantage.
-          </p>
-        </div>
+        <ScrollReveal>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+              Our <span className="gradient-text">Services</span>
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Comprehensive AI and technology solutions designed to accelerate your business growth and competitive advantage.
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <div
-              key={service.title}
-              className="group relative glass-card rounded-2xl p-8 hover-glow transition-all duration-500 hover:-translate-y-1"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Icon */}
-              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.gradient} p-3 mb-6 transition-transform duration-300 group-hover:scale-110`}>
-                <service.icon className="w-full h-full text-foreground" />
-              </div>
+            <ScrollReveal key={service.title} delay={index * 0.1}>
+              <div
+                className="group relative glass-card rounded-2xl p-8 hover-glow transition-all duration-500 hover:-translate-y-1 h-full"
+              >
+                {/* Icon */}
+                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.gradient} p-3 mb-6 transition-transform duration-300 group-hover:scale-110`}>
+                  <service.icon className="w-full h-full text-foreground" />
+                </div>
 
-              {/* Content */}
-              <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {service.description}
-              </p>
+                {/* Content */}
+                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {service.description}
+                </p>
 
-              {/* Hover Arrow */}
-              <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <ArrowUpRight className="w-5 h-5 text-primary" />
+                {/* Hover Arrow */}
+                <div className="absolute top-8 right-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <ArrowUpRight className="w-5 h-5 text-primary" />
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
