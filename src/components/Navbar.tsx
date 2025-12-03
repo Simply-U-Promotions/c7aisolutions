@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ContactFormDialog from "@/components/ContactFormDialog";
 import logo from "@/assets/logo.png";
 
 const Navbar = () => {
@@ -47,9 +48,9 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Button variant="hero" size="default" asChild>
-              <a href="mailto:info@c7aisolutions.com">Get Started</a>
-            </Button>
+            <ContactFormDialog>
+              <Button variant="hero" size="default">Get Started</Button>
+            </ContactFormDialog>
           </div>
 
           {/* Mobile Menu Button */}
@@ -80,9 +81,9 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <Button variant="hero" size="default" className="mt-2" asChild>
-                <a href="mailto:info@c7aisolutions.com">Get Started</a>
-              </Button>
+              <ContactFormDialog>
+                <Button variant="hero" size="default" className="mt-2">Get Started</Button>
+              </ContactFormDialog>
             </div>
           </div>
         )}
