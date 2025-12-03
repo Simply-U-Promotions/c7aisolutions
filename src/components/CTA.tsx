@@ -4,7 +4,7 @@ import ContactFormDialog from "@/components/ContactFormDialog";
 
 const CTA = () => {
   return (
-    <section className="py-24 sm:py-32 relative overflow-hidden">
+    <section className="py-16 sm:py-20 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/5" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/20 rounded-full blur-[150px]" />
