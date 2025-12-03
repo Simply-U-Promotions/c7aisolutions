@@ -49,7 +49,7 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 sm:py-32 relative">
+    <section id="services" className="py-16 sm:py-20 relative">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-card to-background" />
       
