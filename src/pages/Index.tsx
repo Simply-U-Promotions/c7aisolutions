@@ -12,6 +12,7 @@ const Index = () => {
       <Hero />
       <SectionDivider />
       <Services />
+      <div className="py-8 sm:py-12" />
       <SectionDivider />
       <CTA />
       <Footer />
