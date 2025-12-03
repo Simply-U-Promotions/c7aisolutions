@@ -161,9 +161,6 @@ const About = () => {
               </ContactFormDialog>
             </div>
 
-            <p className="text-muted-foreground">
-              <strong className="text-foreground">Visit us:</strong> 101 Eaton Street, Hampton, VA 23669
-            </p>
           </div>
         </div>
       </section>
