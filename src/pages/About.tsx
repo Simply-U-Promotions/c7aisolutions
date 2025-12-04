@@ -62,7 +62,7 @@ const certifications = [
 const industryExperience = [
   "Healthcare & Insurance",
   "Banking & Finance",
-  "Department of Defense",
+  "Education",
   "Government & Public Sector",
   "Software Development",
   "Real Estate & Consulting"
@@ -163,7 +163,7 @@ const About = () => {
               
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Carlton is an accomplished Senior Information Technology Program Manager and Enterprise Business Technology Consultant with over 35 years of experience leading large-scale digital transformation initiatives across healthcare, finance, government, and defense sectors.
+                  Carlton is an accomplished Senior Information Technology Program Manager and Enterprise Business Technology Consultant with over 35 years of experience leading large-scale digital transformation initiatives across healthcare, finance, government, and education sectors.
                 </p>
                 <p>
                   His executive leadership spans roles as Senior Director of Engineering at Elevance Health, Managing Director at Integrated Business Systems, Chief Operating Officer at Solvern Innovations, and Staff Director at the FDIC. In these positions, Carlton led dynamic teams of engineers and analysts, managed multi-million dollar budgets, and oversaw 100+ software development projects with teams of over 130 developers.
