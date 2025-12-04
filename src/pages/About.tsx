@@ -65,7 +65,8 @@ const industryExperience = [
   "Education",
   "Government & Public Sector",
   "Software Development",
-  "Real Estate & Consulting"
+  "Real Estate & Consulting",
+  "Hospitality"
 ];
 
 const About = () => {
