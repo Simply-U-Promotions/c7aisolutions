@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import ContactFormDialog from "@/components/ContactFormDialog";
+import founderImage from "@/assets/founder-carlton-campbell.png";
 import { 
   Target, 
   Lightbulb, 
@@ -10,7 +11,6 @@ import {
   ArrowRight,
   CheckCircle2,
   Award,
-  Briefcase,
   GraduationCap
 } from "lucide-react";
 
@@ -153,10 +153,12 @@ const About = () => {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Bio Card */}
             <div className="lg:col-span-2 glass-card rounded-2xl p-8 lg:p-10">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shrink-0">
-                  <Briefcase className="w-8 h-8 text-primary-foreground" />
-                </div>
+              <div className="flex items-start gap-6 mb-6">
+                <img 
+                  src={founderImage} 
+                  alt="Carlton Campbell - President & CEO of C7AI Solutions"
+                  className="w-28 h-28 rounded-xl object-cover object-top shrink-0 ring-2 ring-primary/20"
+                />
                 <div>
                   <h3 className="text-2xl font-bold">Carlton Campbell</h3>
                   <p className="text-primary font-medium">MPA, PMP, SPC, RTE, SDP, PSM</p>
