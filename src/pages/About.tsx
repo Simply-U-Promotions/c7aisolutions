@@ -87,7 +87,7 @@ const About = () => {
             <img 
               src={founderImage} 
               alt="Carlton Campbell - President & CEO of C7AI Solutions"
-              className="w-40 h-40 rounded-2xl object-cover object-top mx-auto mb-6 ring-4 ring-primary/20 shadow-xl"
+              className="w-52 h-52 rounded-2xl object-cover object-top mx-auto mb-6 ring-4 ring-primary/20 shadow-xl"
             />
             <h3 className="text-2xl font-bold">Carlton Campbell</h3>
             <p className="text-primary font-medium">MPA, PMP, SPC, RTE, SDP, PSM</p>
