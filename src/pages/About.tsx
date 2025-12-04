@@ -172,7 +172,7 @@ const About = () => {
                   Beyond corporate leadership, Carlton has served his community as a Board Member for the Hampton Economic Development Authority (2017-2021, reappointed 2024-2028) and the Hampton Planning Commission (2010-2017), helping guide strategic investments and foster economic growth.
                 </p>
                 <p>
-                  A certified SAFe® Practice Consultant and Release Train Engineer, Carlton brings deep expertise in scaled agile delivery, DevOps practices, and continuous process improvement. His strategic vision combines technical excellence with a genuine understanding of business challenges to deliver solutions that create measurable impact.
+                  A certified Project Management Professional (PMP), SAFe® Practice Consultant, and Release Train Engineer, Carlton brings deep expertise in program management, scaled agile delivery, DevOps practices, and continuous process improvement. His strategic vision combines technical excellence with a genuine understanding of business challenges to deliver solutions that create measurable impact.
                 </p>
               </div>
             </div>
