@@ -95,57 +95,23 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-20 relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-                Our <span className="gradient-text">Mission</span>
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                At C7AI Solutions, we believe that every business, regardless of size, 
-                deserves access to the same powerful AI technologies that drive Fortune 500 
-                companies. Our mission is to democratize AI by making it accessible, 
-                affordable, and practical for startups and small businesses.
-              </p>
-              <p className="text-lg text-muted-foreground mb-8">
-                We combine deep technical expertise with a genuine understanding of 
-                business challenges to create solutions that don't just impress—they 
-                deliver real, measurable results.
-              </p>
-              <ContactFormDialog>
-                <Button variant="hero" size="lg" className="group">
-                  Let's Work Together
-                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </ContactFormDialog>
-            </div>
-            
-            {/* Stats/Highlights */}
-            <div className="glass-card rounded-2xl p-8 lg:p-12">
-              <h3 className="text-xl font-semibold mb-6">Our Expertise</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {expertise.map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                    <span className="text-muted-foreground">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Founder Section */}
       <section className="py-20 bg-card/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          {/* Founder Header with Photo */}
+          <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-6">
               Meet Our <span className="gradient-text">Founder</span>
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <img 
+              src={founderImage} 
+              alt="Carlton Campbell - President & CEO of C7AI Solutions"
+              className="w-40 h-40 rounded-2xl object-cover object-top mx-auto mb-6 ring-4 ring-primary/20 shadow-xl"
+            />
+            <h3 className="text-2xl font-bold">Carlton Campbell</h3>
+            <p className="text-primary font-medium">MPA, PMP, SPC, RTE, SDP, PSM</p>
+            <p className="text-muted-foreground">President & CEO</p>
+            <p className="text-lg text-muted-foreground mt-4">
               Leading C7AI Solutions with over 35 years of technology leadership experience.
             </p>
           </div>
@@ -153,19 +119,6 @@ const About = () => {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Bio Card */}
             <div className="lg:col-span-2 glass-card rounded-2xl p-8 lg:p-10">
-              <div className="flex items-start gap-6 mb-6">
-                <img 
-                  src={founderImage} 
-                  alt="Carlton Campbell - President & CEO of C7AI Solutions"
-                  className="w-28 h-28 rounded-xl object-cover object-top shrink-0 ring-2 ring-primary/20"
-                />
-                <div>
-                  <h3 className="text-2xl font-bold">Carlton Campbell</h3>
-                  <p className="text-primary font-medium">MPA, PMP, SPC, RTE, SDP, PSM</p>
-                  <p className="text-muted-foreground">President & CEO</p>
-                </div>
-              </div>
-              
               <div className="space-y-4 text-muted-foreground">
                 <p>
                   Carlton is an accomplished Senior Information Technology Program Manager and Enterprise Business Technology Consultant with over 35 years of experience leading large-scale digital transformation initiatives across healthcare, finance, government, and education sectors.
@@ -228,6 +181,49 @@ const About = () => {
                   <span className="text-sm text-muted-foreground">{cert}</span>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission Section */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+                Our <span className="gradient-text">Mission</span>
+              </h2>
+              <p className="text-lg text-muted-foreground mb-6">
+                At C7AI Solutions, we believe that every business, regardless of size, 
+                deserves access to the same powerful AI technologies that drive Fortune 500 
+                companies. Our mission is to democratize AI by making it accessible, 
+                affordable, and practical for startups and small businesses.
+              </p>
+              <p className="text-lg text-muted-foreground mb-8">
+                We combine deep technical expertise with a genuine understanding of 
+                business challenges to create solutions that don't just impress—they 
+                deliver real, measurable results.
+              </p>
+              <ContactFormDialog>
+                <Button variant="hero" size="lg" className="group">
+                  Let's Work Together
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </Button>
+              </ContactFormDialog>
+            </div>
+            
+            {/* Stats/Highlights */}
+            <div className="glass-card rounded-2xl p-8 lg:p-12">
+              <h3 className="text-xl font-semibold mb-6">Our Expertise</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {expertise.map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
+                    <span className="text-muted-foreground">{item}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
