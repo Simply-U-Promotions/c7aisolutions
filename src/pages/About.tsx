@@ -160,7 +160,7 @@ const About = () => {
       {/* Mission Section */}
       <section className="py-20 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl sm:text-4xl font-bold mb-6">
               Our <span className="gradient-text">Mission</span>
             </h2>
