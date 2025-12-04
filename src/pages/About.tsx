@@ -76,27 +76,8 @@ const About = () => {
     <main className="min-h-screen bg-background">
       <Navbar />
       
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card" />
-        <div className="absolute top-1/3 right-0 w-96 h-96 bg-primary/15 rounded-full blur-[120px]" />
-        
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">
-              About <span className="gradient-text">C7AI Solutions</span>
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              We're a team of AI experts, developers, and strategists passionate about 
-              helping startups and small businesses harness the transformative power of 
-              artificial intelligence.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Founder Section */}
-      <section className="py-20 bg-card/50">
+      <section className="pt-32 pb-20 bg-card/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Founder Header with Photo */}
           <div className="text-center max-w-3xl mx-auto mb-12">
