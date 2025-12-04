@@ -97,9 +97,9 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid gap-8">
             {/* Bio Card */}
-            <div className="lg:col-span-2 glass-card rounded-2xl p-8 lg:p-10">
+            <div className="glass-card rounded-2xl p-8 lg:p-10">
               <div className="space-y-4 text-muted-foreground">
                 <p>
                   Carlton is an accomplished Senior Information Technology Program Manager and Enterprise Business Technology Consultant with over 35 years of experience leading large-scale digital transformation initiatives across healthcare, finance, government, and education sectors.
@@ -116,35 +116,36 @@ const About = () => {
               </div>
             </div>
 
-            {/* Credentials Card */}
-            <div className="space-y-6">
-              <div className="glass-card rounded-2xl p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <GraduationCap className="w-6 h-6 text-primary" />
-                  <h4 className="font-semibold">Education</h4>
-                </div>
-                <ul className="space-y-2 text-sm text-muted-foreground">
-                  <li>Master of Public Administration (MPA)</li>
-                  <li>B.S. Computer Information Systems</li>
-                  <li className="text-xs opacity-75">Strayer University</li>
-                </ul>
-              </div>
+          </div>
 
-              <div className="glass-card rounded-2xl p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <Award className="w-6 h-6 text-primary" />
-                  <h4 className="font-semibold">Industry Experience</h4>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {industryExperience.map((industry) => (
-                    <span 
-                      key={industry}
-                      className="text-xs px-3 py-1.5 rounded-full bg-primary/10 text-primary"
-                    >
-                      {industry}
-                    </span>
-                  ))}
-                </div>
+          {/* Education & Industry Experience - Side by Side */}
+          <div className="grid md:grid-cols-2 gap-8 mt-8">
+            <div className="glass-card rounded-2xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <GraduationCap className="w-6 h-6 text-primary" />
+                <h4 className="font-semibold">Education</h4>
+              </div>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>Master of Public Administration (MPA)</li>
+                <li>B.S. Computer Information Systems</li>
+                <li className="text-xs opacity-75">Strayer University</li>
+              </ul>
+            </div>
+
+            <div className="glass-card rounded-2xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Award className="w-6 h-6 text-primary" />
+                <h4 className="font-semibold">Industry Experience</h4>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {industryExperience.map((industry) => (
+                  <span 
+                    key={industry}
+                    className="text-xs px-3 py-1.5 rounded-full bg-primary/10 text-primary"
+                  >
+                    {industry}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
