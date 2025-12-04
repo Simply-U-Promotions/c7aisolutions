@@ -143,7 +143,7 @@ const About = () => {
               Meet Our <span className="gradient-text">Founder</span>
             </h2>
             <p className="text-lg text-muted-foreground">
-              Leading C7AI Solutions with over 25 years of technology leadership experience.
+              Leading C7AI Solutions with over 35 years of technology leadership experience.
             </p>
           </div>
 
@@ -163,10 +163,13 @@ const About = () => {
               
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  Carlton is an accomplished Senior Information Technology Program Manager and Enterprise Business Technology Consultant with extensive experience leading large-scale digital transformation initiatives across healthcare, finance, government, and defense sectors.
+                  Carlton is an accomplished Senior Information Technology Program Manager and Enterprise Business Technology Consultant with over 35 years of experience leading large-scale digital transformation initiatives across healthcare, finance, government, and defense sectors.
                 </p>
                 <p>
-                  As former Senior Director of Engineering at Elevance Health, Carlton led dynamic teams of engineers, testers, and business analysts in developing mission-critical healthcare software, ensuring regulatory compliance while driving operational efficiency. He has managed multi-million dollar budgets, overseen 100+ software development projects, and led teams of over 130 developers using both waterfall and agile methodologies.
+                  His executive leadership spans roles as Senior Director of Engineering at Elevance Health, Managing Director at Integrated Business Systems, Chief Operating Officer at Solvern Innovations, and Staff Director at the FDIC. In these positions, Carlton led dynamic teams of engineers and analysts, managed multi-million dollar budgets, and oversaw 100+ software development projects with teams of over 130 developers.
+                </p>
+                <p>
+                  Beyond corporate leadership, Carlton has served his community as a Board Member for the Hampton Economic Development Authority (2017-2021, reappointed 2024-2028) and the Hampton Planning Commission (2010-2017), helping guide strategic investments and foster economic growth.
                 </p>
                 <p>
                   A certified SAFe® Practice Consultant and Release Train Engineer, Carlton brings deep expertise in scaled agile delivery, DevOps practices, and continuous process improvement. His strategic vision combines technical excellence with a genuine understanding of business challenges to deliver solutions that create measurable impact.
