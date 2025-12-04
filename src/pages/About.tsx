@@ -8,7 +8,10 @@ import {
   Users, 
   Rocket,
   ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  Award,
+  Briefcase,
+  GraduationCap
 } from "lucide-react";
 
 const values = [
@@ -43,6 +46,26 @@ const expertise = [
   "Smart Contract Development",
   "DeFi & Web3 Solutions",
   "Technical SEO & AI Content"
+];
+
+const certifications = [
+  "Project Management Professional (PMP)",
+  "SAFe® 6 Practice Consultant (SPC)",
+  "SAFe® 6 Release Train Engineer (RTE)",
+  "SAFe® 6 DevOps Practitioner (SDP)",
+  "Professional Scrum Master (PSM)",
+  "COBIT 5 Foundation Certified",
+  "ITIL Foundation Certificate",
+  "Executive Leadership Program (USDA)"
+];
+
+const industryExperience = [
+  "Healthcare & Insurance",
+  "Banking & Finance",
+  "Department of Defense",
+  "Government & Public Sector",
+  "Software Development",
+  "Real Estate & Consulting"
 ];
 
 const About = () => {
@@ -112,8 +135,98 @@ const About = () => {
         </div>
       </section>
 
-      {/* Values Section */}
+      {/* Founder Section */}
       <section className="py-20 bg-card/50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+              Meet Our <span className="gradient-text">Founder</span>
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Leading C7AI Solutions with over 25 years of technology leadership experience.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Bio Card */}
+            <div className="lg:col-span-2 glass-card rounded-2xl p-8 lg:p-10">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shrink-0">
+                  <Briefcase className="w-8 h-8 text-primary-foreground" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold">Carlton Campbell</h3>
+                  <p className="text-primary font-medium">MPA, PMP, SPC, RTE, SDP, PSM</p>
+                  <p className="text-muted-foreground">President & CEO</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4 text-muted-foreground">
+                <p>
+                  Carlton is an accomplished Senior Information Technology Program Manager and Enterprise Business Technology Consultant with extensive experience leading large-scale digital transformation initiatives across healthcare, finance, government, and defense sectors.
+                </p>
+                <p>
+                  As former Senior Director of Engineering at Elevance Health, Carlton led dynamic teams of engineers, testers, and business analysts in developing mission-critical healthcare software, ensuring regulatory compliance while driving operational efficiency. He has managed multi-million dollar budgets, overseen 100+ software development projects, and led teams of over 130 developers using both waterfall and agile methodologies.
+                </p>
+                <p>
+                  A certified SAFe® Practice Consultant and Release Train Engineer, Carlton brings deep expertise in scaled agile delivery, DevOps practices, and continuous process improvement. His strategic vision combines technical excellence with a genuine understanding of business challenges to deliver solutions that create measurable impact.
+                </p>
+              </div>
+            </div>
+
+            {/* Credentials Card */}
+            <div className="space-y-6">
+              <div className="glass-card rounded-2xl p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <GraduationCap className="w-6 h-6 text-primary" />
+                  <h4 className="font-semibold">Education</h4>
+                </div>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>Master of Public Administration (MPA)</li>
+                  <li>B.S. Computer Information Systems</li>
+                  <li className="text-xs opacity-75">Strayer University</li>
+                </ul>
+              </div>
+
+              <div className="glass-card rounded-2xl p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <Award className="w-6 h-6 text-primary" />
+                  <h4 className="font-semibold">Industry Experience</h4>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {industryExperience.map((industry) => (
+                    <span 
+                      key={industry}
+                      className="text-xs px-3 py-1.5 rounded-full bg-primary/10 text-primary"
+                    >
+                      {industry}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Certifications */}
+          <div className="mt-8 glass-card rounded-2xl p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <Award className="w-6 h-6 text-primary" />
+              <h4 className="font-semibold">Professional Certifications</h4>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {certifications.map((cert) => (
+                <div key={cert} className="flex items-center gap-3">
+                  <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                  <span className="text-sm text-muted-foreground">{cert}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-6">
