@@ -1,6 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import Mission from "@/components/Mission";
+import Values from "@/components/Values";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
@@ -11,6 +13,8 @@ const Index = () => {
       <Hero />
       <Services />
       <div className="py-8 sm:py-12" />
+      <Mission />
+      <Values />
       <CTA />
       <Footer />
     </main>
