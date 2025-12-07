@@ -87,7 +87,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-border/50">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              © {currentYear} C7AI Solutions. All rights reserved.
+              © {currentYear} C7AI Solutions LLC. All rights reserved.
             </p>
             <p className="text-sm text-muted-foreground">
               Hampton, Virginia
