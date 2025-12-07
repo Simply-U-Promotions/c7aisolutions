@@ -32,15 +32,6 @@ const CTA = () => {
               </ContactFormDialog>
             </div>
 
-            {/* Contact Info */}
-            <div className="mt-12 pt-8 border-t border-border/30">
-              <p className="text-muted-foreground">
-                <span className="font-medium text-foreground">Email:</span>{" "}
-                <a href="mailto:info@c7aisolutions.com" className="text-primary hover:underline">
-                  info@c7aisolutions.com
-                </a>
-              </p>
-            </div>
           </ScrollReveal>
         </div>
       </div>
