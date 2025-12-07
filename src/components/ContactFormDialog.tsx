@@ -22,7 +22,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "@/hooks/use-toast";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Phone } from "lucide-react";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -104,6 +104,16 @@ const ContactFormDialog = ({ children }: ContactFormDialogProps) => {
                 Tell us about your project and we'll reach out to discuss how we can help.
               </DialogDescription>
             </DialogHeader>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground bg-secondary/50 rounded-lg px-4 py-3 mt-2">
+              <Phone className="w-4 h-4 text-primary" />
+              <span>Or call us directly:</span>
+              <a 
+                href="tel:757-799-1095" 
+                className="text-primary hover:underline font-medium"
+              >
+                (757) 799-1095
+              </a>
+            </div>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-4">
                 <FormField

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MapPin, Mail } from "lucide-react";
+import { MapPin, Mail, Phone } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
@@ -60,6 +60,15 @@ const Footer = () => {
                   101 Eaton Street<br />
                   Hampton, VA 23669
                 </span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-primary shrink-0" />
+                <a 
+                  href="tel:757-799-1095" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  (757) 799-1095
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
