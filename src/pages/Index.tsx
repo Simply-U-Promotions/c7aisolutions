@@ -13,13 +13,13 @@ const Index = () => {
       <Hero />
       <div className="py-8 sm:py-12 bg-gradient-to-b from-card via-card to-card" />
       <Services />
-      <div className="py-8 sm:py-12" />
+      <div className="py-8 sm:py-12 bg-gradient-to-b from-background to-background" />
       <Mission />
-      <div className="py-8 sm:py-12" />
+      <div className="py-8 sm:py-12 bg-background" />
       <Values />
-      <div className="py-8 sm:py-12" />
+      <div className="py-8 sm:py-12 bg-gradient-to-b from-background to-background" />
       <CTA />
-      <div className="py-8 sm:py-12" />
+      <div className="py-8 sm:py-12 bg-gradient-to-b from-background to-card" />
       <Footer />
     </main>
   );
