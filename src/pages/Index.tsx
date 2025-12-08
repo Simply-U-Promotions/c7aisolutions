@@ -17,7 +17,9 @@ const Index = () => {
       <Mission />
       <div className="py-8 sm:py-12" />
       <Values />
+      <div className="py-8 sm:py-12" />
       <CTA />
+      <div className="py-8 sm:py-12" />
       <Footer />
     </main>
   );
