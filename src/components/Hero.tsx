@@ -4,7 +4,7 @@ import ContactFormDialog from "@/components/ContactFormDialog";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-20 pb-8 sm:pb-10">
+    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-28 sm:pt-32 pb-8 sm:pb-10">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[128px] animate-float" />
