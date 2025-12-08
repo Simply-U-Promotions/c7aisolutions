@@ -11,6 +11,7 @@ const Index = () => {
     <main className="min-h-screen bg-background">
       <Navbar />
       <Hero />
+      <div className="py-8 sm:py-12" />
       <Services />
       <div className="py-8 sm:py-12" />
       <Mission />
