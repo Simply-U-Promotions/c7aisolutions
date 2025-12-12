@@ -3,10 +3,8 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import ContactFormDialog from "@/components/ContactFormDialog";
 import founderImage from "@/assets/founder-carlton-campbell.png";
-
 const About = () => {
-  return (
-    <main className="min-h-screen bg-background">
+  return <main className="min-h-screen bg-background">
       <Navbar />
       
       {/* Founder Section */}
@@ -17,11 +15,7 @@ const About = () => {
             <h2 className="text-3xl sm:text-4xl font-bold mb-6">
               Meet Our <span className="gradient-text">Founder</span>
             </h2>
-            <img 
-              src={founderImage} 
-              alt="Carlton Campbell - President & CEO of C7AI Solutions"
-              className="w-52 h-52 rounded-2xl object-cover object-top mx-auto mb-6 ring-4 ring-primary/20 shadow-xl"
-            />
+            <img src={founderImage} alt="Carlton Campbell - President & CEO of C7AI Solutions" className="w-52 h-52 rounded-2xl object-cover object-top mx-auto mb-6 ring-4 ring-primary/20 shadow-xl" />
             <h3 className="text-2xl font-bold">Carlton Campbell</h3>
             <p className="text-primary font-medium">MPA, PMP, SPC, RTE, SDP, PSM</p>
             <p className="text-muted-foreground">President & CEO</p>
@@ -38,9 +32,7 @@ const About = () => {
               <p>
                 My journey has taken me through some incredible roles—Senior Director of Engineering at Elevance Health, Managing Director at Integrated Business Systems, COO at Solvern Innovations, Director of Information Technology at Norfolk State University, and Staff Director at the FDIC. Along the way, I've led teams of over 130 developers, managed multi-million dollar budgets, and delivered more than 100 software projects. But what I'm most proud of is the relationships I've built and the real impact we've made together.
               </p>
-              <p>
-                I'm a bit of a lifelong learner—earned my Master of Public Administration and B.S. in Computer Information Systems from Strayer University. And yes, I've collected a few certifications along the way: PMP, SAFe® Practice Consultant, Release Train Engineer, DevOps Practitioner, Professional Scrum Master, COBIT 5, ITIL, and completed the USDA Executive Leadership Program. They've all helped me bring structure and best practices to the chaos that can be enterprise technology.
-              </p>
+              <p>I'm a bit of a lifelong learner—earning my Master of Public Administration and B.S. in Computer Information Systems from Strayer University. And yes, I've collected a few certifications along the way: PMP, SAFe® Practice Consultant, Release Train Engineer, DevOps Practitioner, Professional Scrum Master, COBIT 5, ITIL, and completed the USDA Executive Leadership Program. They've all helped me bring structure and best practices to the chaos that can be enterprise technology.</p>
               <p>
                 Beyond the corporate world, I care deeply about my community. I've served on the Hampton Economic Development Authority and the Hampton Planning Commission, helping guide strategic investments and growth in my hometown.
               </p>
@@ -77,8 +69,6 @@ const About = () => {
       </section>
 
       <Footer />
-    </main>
-  );
+    </main>;
 };
-
 export default About;
