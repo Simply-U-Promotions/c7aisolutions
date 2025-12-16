@@ -26,7 +26,7 @@ const About = () => {
 
           <div className="glass-card rounded-2xl p-8 lg:p-10">
             <div className="space-y-4 text-muted-foreground">
-              <p>I've spent over 35 years in the tech world, and honestly, it's been quite a ride. From government to education, hospitality to healthcare, retail to supply chain, I've had the chance to work across so many different industries, and each one taught me something new about how technology can genuinely transform the way we do things.</p>
+              <p>I've spent over 35 years in the tech world, and honestly, it's been quite a ride. I've had the chance to work across so many different industries, and each one taught me something new about how technology can genuinely transform the way we do things.</p>
               <p>
                 My journey has taken me through some incredible roles—Senior Director of Engineering at Elevance Health, Managing Director at Integrated Business Systems, COO at Solvern Innovations, Director of Information Technology at Norfolk State University, and Staff Director at the FDIC. Along the way, I've led teams of over 130 developers, managed multi-million dollar budgets, and delivered more than 100 software projects. But what I'm most proud of is the relationships I've built and the real impact we've made together.
               </p>
