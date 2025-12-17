@@ -19,7 +19,7 @@ const Index = () => {
       <Values />
       <div className="py-8 sm:py-12 bg-gradient-to-b from-background to-background" />
       <CTA />
-      <div className="py-16 sm:py-24 bg-gradient-to-b from-background to-card" />
+      <div className="py-16 sm:py-24 bg-background" />
       <Footer />
     </main>
   );
