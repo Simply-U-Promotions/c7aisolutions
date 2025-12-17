@@ -59,7 +59,7 @@ const Services = () => {
   return (
     <section id="services" className="py-14 sm:py-18 relative">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-card to-background" />
+      <div className="absolute inset-0 bg-background" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
