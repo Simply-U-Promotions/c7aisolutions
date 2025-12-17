@@ -24,7 +24,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="glass-card rounded-2xl p-8 lg:p-10 bg-black">
+          <div className="glass-card rounded-2xl p-8 lg:p-10 bg-inherit">
             <div className="space-y-4 text-muted-foreground">
               <p>I've spent over 35 years in the tech world, and honestly, it's been quite a ride. From government to education, hospitality to healthcare, retail to supply chain, I've had the chance to work across so many different industries, and each one taught me something new about how technology can genuinely transform the way we do things.</p>
               <p>
