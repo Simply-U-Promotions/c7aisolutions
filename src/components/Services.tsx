@@ -32,7 +32,7 @@ const services = [
   {
     icon: Blocks,
     title: "Custom AI Applications",
-    description: "Bespoke AI solutions tailored to your unique business challenges. From MVPs to enterprise-scale deployments.",
+    description: "AI solutions tailored to your unique business challenges. From MVPs to enterprise-scale deployments.",
     gradient: "from-blue-500 to-indigo-500"
   },
   {
