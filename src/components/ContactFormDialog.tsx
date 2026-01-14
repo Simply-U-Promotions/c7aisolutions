@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/form";
 import { toast } from "@/hooks/use-toast";
 import { CheckCircle2, Phone } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -52,14 +53,35 @@ const ContactFormDialog = ({ children }: ContactFormDialogProps) => {
   });
 
   const onSubmit = async (data: ContactFormData) => {
-    // For now, show success message
-    // With Lovable Cloud, this would send to an edge function
-    console.log("Form submitted:", data);
-    setSubmitted(true);
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
+    try {
+      const { data: response, error } = await supabase.functions.invoke('send-contact-email', {
+        body: data,
+      });
+
+      if (error) {
+        console.error("Error sending email:", error);
+        toast({
+          title: "Error",
+          description: "Failed to send message. Please try again or call us directly.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      console.log("Email sent successfully:", response);
+      setSubmitted(true);
+      toast({
+        title: "Message sent!",
+        description: "We'll get back to you within 24 hours.",
+      });
+    } catch (error) {
+      console.error("Error:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleOpenChange = (newOpen: boolean) => {
