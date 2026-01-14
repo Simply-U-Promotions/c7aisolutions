@@ -23,6 +23,7 @@ export type Database = {
           id: string
           message: string
           name: string
+          sent_to_email: string | null
         }
         Insert: {
           company?: string | null
@@ -32,6 +33,7 @@ export type Database = {
           id?: string
           message: string
           name: string
+          sent_to_email?: string | null
         }
         Update: {
           company?: string | null
@@ -41,6 +43,7 @@ export type Database = {
           id?: string
           message?: string
           name?: string
+          sent_to_email?: string | null
         }
         Relationships: []
       }
