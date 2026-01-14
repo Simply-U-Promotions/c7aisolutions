@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -30,6 +31,11 @@ serve(async (req) => {
       );
     }
 
+    // Initialize Supabase client with service role for database access
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
     // Get SMTP configuration from environment
     const smtpHost = Deno.env.get('SMTP_HOST');
     const smtpPort = parseInt(Deno.env.get('SMTP_PORT') || '587');
@@ -40,6 +46,21 @@ serve(async (req) => {
 
     if (!smtpHost || !smtpUser || !smtpPass || !fromEmail || !toEmail) {
       console.error("Missing SMTP configuration");
+      // Still save to database even if SMTP is not configured
+      const { error: dbError } = await supabase
+        .from('contact_submissions')
+        .insert({
+          name,
+          email,
+          company: company || null,
+          message,
+          email_sent: false,
+        });
+      
+      if (dbError) {
+        console.error("Database error:", dbError);
+      }
+
       return new Response(
         JSON.stringify({ error: "Server configuration error" }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -48,24 +69,27 @@ serve(async (req) => {
 
     console.log(`Sending contact form email from ${email} to ${toEmail}`);
 
-    // Import SMTPClient from deno.land
-    const { SMTPClient } = await import("https://deno.land/x/denomailer@1.6.0/mod.ts");
+    let emailSent = false;
 
-    const client = new SMTPClient({
-      connection: {
-        hostname: smtpHost,
-        port: smtpPort,
-        tls: true,
-        auth: {
-          username: smtpUser,
-          password: smtpPass,
+    try {
+      // Import SMTPClient from deno.land
+      const { SMTPClient } = await import("https://deno.land/x/denomailer@1.6.0/mod.ts");
+
+      const client = new SMTPClient({
+        connection: {
+          hostname: smtpHost,
+          port: smtpPort,
+          tls: true,
+          auth: {
+            username: smtpUser,
+            password: smtpPass,
+          },
         },
-      },
-    });
+      });
 
-    // Format the email content
-    const companyLine = company ? `Company: ${company}\n` : '';
-    const emailBody = `New contact form submission from C7AI Solutions website:
+      // Format the email content
+      const companyLine = company ? `Company: ${company}\n` : '';
+      const emailBody = `New contact form submission from C7AI Solutions website:
 
 Name: ${name}
 Email: ${email}
@@ -76,7 +100,7 @@ ${message}
 ---
 This email was sent from the C7AI Solutions contact form.`;
 
-    const htmlBody = `
+      const htmlBody = `
 <h2>New Contact Form Submission</h2>
 <p>You have received a new message from the C7AI Solutions website contact form:</p>
 
@@ -104,29 +128,65 @@ This email was sent from the C7AI Solutions contact form.`;
 <p style="color: #888; font-size: 12px;">This email was sent from the C7AI Solutions contact form.</p>
 `;
 
-    await client.send({
-      from: fromEmail,
-      to: toEmail,
-      subject: `New Contact Form: ${name}`,
-      content: emailBody,
-      html: htmlBody,
-      replyTo: email,
-    });
+      await client.send({
+        from: fromEmail,
+        to: toEmail,
+        subject: `New Contact Form: ${name}`,
+        content: emailBody,
+        html: htmlBody,
+        replyTo: email,
+      });
 
-    await client.close();
+      await client.close();
+      emailSent = true;
+      console.log("Email sent successfully");
+    } catch (emailError) {
+      const errorMessage = emailError instanceof Error ? emailError.message : 'Unknown error';
+      console.error("Email sending failed:", errorMessage);
+      // Continue to save to database even if email fails
+    }
 
-    console.log("Email sent successfully");
+    // Save submission to database
+    const { error: dbError } = await supabase
+      .from('contact_submissions')
+      .insert({
+        name,
+        email,
+        company: company || null,
+        message,
+        email_sent: emailSent,
+      });
+
+    if (dbError) {
+      console.error("Database error:", dbError);
+      // Don't fail the request if email was sent successfully
+      if (!emailSent) {
+        return new Response(
+          JSON.stringify({ error: "Failed to save submission" }),
+          { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+    } else {
+      console.log("Submission saved to database");
+    }
+
+    if (!emailSent) {
+      return new Response(
+        JSON.stringify({ error: "Failed to send email, but submission saved" }),
+        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
 
     return new Response(
-      JSON.stringify({ success: true, message: "Email sent successfully" }),
+      JSON.stringify({ success: true, message: "Email sent and submission saved successfully" }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
 
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error("Error sending email:", errorMessage);
+    console.error("Error processing submission:", errorMessage);
     return new Response(
-      JSON.stringify({ error: "Failed to send email", details: errorMessage }),
+      JSON.stringify({ error: "Failed to process submission", details: errorMessage }),
       { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   }
