@@ -37,14 +37,13 @@ serve(async (req) => {
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     // Get SMTP configuration from environment
+    // Using SMTP_USER as both sender and recipient for simplicity
     const smtpHost = Deno.env.get('SMTP_HOST');
     const smtpPort = parseInt(Deno.env.get('SMTP_PORT') || '587');
     const smtpUser = Deno.env.get('SMTP_USER');
     const smtpPass = Deno.env.get('SMTP_PASS');
-    const fromEmail = Deno.env.get('SMTP_FROM_EMAIL');
-    const toEmail = Deno.env.get('SMTP_TO_EMAIL');
 
-    if (!smtpHost || !smtpUser || !smtpPass || !fromEmail || !toEmail) {
+    if (!smtpHost || !smtpUser || !smtpPass) {
       console.error("Missing SMTP configuration");
       // Still save to database even if SMTP is not configured
       const { error: dbError } = await supabase
@@ -67,7 +66,7 @@ serve(async (req) => {
       );
     }
 
-    console.log(`Sending contact form email from ${email} to ${toEmail}`);
+    console.log(`Sending contact form email from ${email} to ${smtpUser}`);
 
     let emailSent = false;
 
@@ -129,8 +128,8 @@ This email was sent from the C7AI Solutions contact form.`;
 `;
 
       await client.send({
-        from: fromEmail,
-        to: toEmail,
+        from: smtpUser,
+        to: smtpUser,
         subject: `New Contact Form: ${name}`,
         content: emailBody,
         html: htmlBody,
@@ -155,6 +154,7 @@ This email was sent from the C7AI Solutions contact form.`;
         company: company || null,
         message,
         email_sent: emailSent,
+        sent_to_email: smtpUser,
       });
 
     if (dbError) {

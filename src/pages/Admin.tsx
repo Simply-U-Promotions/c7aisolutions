@@ -18,7 +18,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Loader2, LogOut, Mail, Building2, Calendar, CheckCircle2, XCircle, Trash2 } from "lucide-react";
+import { ArrowLeft, Loader2, LogOut, Mail, Building2, Calendar, CheckCircle2, XCircle, Trash2, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 import { format } from "date-fns";
@@ -31,6 +32,7 @@ interface ContactSubmission {
   message: string;
   email_sent: boolean;
   created_at: string;
+  sent_to_email: string | null;
 }
 
 const Admin = () => {
@@ -39,6 +41,18 @@ const Admin = () => {
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
   const [loadingSubmissions, setLoadingSubmissions] = useState(true);
   const [selectedSubmission, setSelectedSubmission] = useState<ContactSubmission | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredSubmissions = submissions.filter((submission) => {
+    const query = searchQuery.toLowerCase();
+    return (
+      submission.name.toLowerCase().includes(query) ||
+      submission.email.toLowerCase().includes(query) ||
+      (submission.company?.toLowerCase().includes(query) ?? false) ||
+      submission.message.toLowerCase().includes(query) ||
+      (submission.sent_to_email?.toLowerCase().includes(query) ?? false)
+    );
+  });
 
   useEffect(() => {
     if (!loading && !user) {
@@ -146,23 +160,36 @@ const Admin = () => {
       </header>
 
       <main className="container mx-auto px-6 py-8">
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Contact Submissions</h2>
-          <p className="text-muted-foreground">
-            View all contact form submissions from your website.
-          </p>
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-bold text-foreground mb-2">Contact Submissions</h2>
+            <p className="text-muted-foreground">
+              View all contact form submissions from your website.
+            </p>
+          </div>
+          <div className="relative w-full sm:w-72">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Search submissions..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-9"
+            />
+          </div>
         </div>
 
         {loadingSubmissions ? (
           <div className="flex items-center justify-center py-12">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
           </div>
-        ) : submissions.length === 0 ? (
+        ) : filteredSubmissions.length === 0 ? (
           <div className="text-center py-12 bg-card border border-border rounded-xl">
             <Mail className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-foreground mb-2">No submissions yet</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-2">
+              {searchQuery ? "No matching submissions" : "No submissions yet"}
+            </h3>
             <p className="text-muted-foreground">
-              Contact form submissions will appear here.
+              {searchQuery ? "Try adjusting your search query." : "Contact form submissions will appear here."}
             </p>
           </div>
         ) : (
@@ -175,12 +202,13 @@ const Admin = () => {
                   <TableHead className="text-muted-foreground">Company</TableHead>
                   <TableHead className="text-muted-foreground">Message</TableHead>
                   <TableHead className="text-muted-foreground">Status</TableHead>
-                  <TableHead className="text-muted-foreground">Date</TableHead>
+                  <TableHead className="text-muted-foreground">Sent To</TableHead>
+                  <TableHead className="text-muted-foreground">Date & Time</TableHead>
                   <TableHead className="text-muted-foreground w-[60px]"></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {submissions.map((submission) => (
+                {filteredSubmissions.map((submission) => (
                   <TableRow 
                     key={submission.id} 
                     className="border-border cursor-pointer hover:bg-muted/50"
@@ -227,9 +255,12 @@ const Admin = () => {
                       )}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
+                      {submission.sent_to_email || "—"}
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
                       <span className="inline-flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
-                        {format(new Date(submission.created_at), "MMM d, yyyy")}
+                        {format(new Date(submission.created_at), "MMM d, yyyy h:mm a")}
                       </span>
                     </TableCell>
                     <TableCell>
@@ -276,9 +307,15 @@ const Admin = () => {
                     </p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground mb-1">Date</p>
+                    <p className="text-muted-foreground mb-1">Date & Time</p>
                     <p className="text-foreground">
-                      {format(new Date(selectedSubmission.created_at), "MMM d, yyyy 'at' h:mm a")}
+                      {format(new Date(selectedSubmission.created_at), "MMM d, yyyy 'at' h:mm:ss a")}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground mb-1">Sent To</p>
+                    <p className="text-foreground">
+                      {selectedSubmission.sent_to_email || "—"}
                     </p>
                   </div>
                   <div>
