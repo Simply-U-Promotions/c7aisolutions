@@ -28,7 +28,7 @@ interface ContactSubmission {
 }
 
 const Admin = () => {
-  const { user, isAdmin, loading, signOut } = useAuth();
+  const { user, isAdmin, loading, adminLoading, signOut } = useAuth();
   const navigate = useNavigate();
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
   const [loadingSubmissions, setLoadingSubmissions] = useState(true);
@@ -40,7 +40,8 @@ const Admin = () => {
   }, [user, loading, navigate]);
 
   useEffect(() => {
-    if (!loading && user && !isAdmin) {
+    // Only check admin access after admin role has been loaded
+    if (!loading && !adminLoading && user && !isAdmin) {
       toast({
         title: "Access Denied",
         description: "You don't have permission to access this page.",
@@ -48,7 +49,7 @@ const Admin = () => {
       });
       navigate("/");
     }
-  }, [isAdmin, user, loading, navigate]);
+  }, [isAdmin, user, loading, adminLoading, navigate]);
 
   useEffect(() => {
     const fetchSubmissions = async () => {
@@ -82,7 +83,7 @@ const Admin = () => {
     navigate("/");
   };
 
-  if (loading) {
+  if (loading || adminLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />

@@ -7,6 +7,7 @@ interface AuthContextType {
   session: Session | null;
   isAdmin: boolean;
   loading: boolean;
+  adminLoading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
   signUp: (email: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
@@ -19,6 +20,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [session, setSession] = useState<Session | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [adminLoading, setAdminLoading] = useState(false);
 
   const checkAdminRole = async (userId: string) => {
     const { data, error } = await supabase
@@ -44,11 +46,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
         // Defer admin check to avoid deadlock
         if (session?.user) {
+          setAdminLoading(true);
           setTimeout(() => {
-            checkAdminRole(session.user.id).then(setIsAdmin);
+            checkAdminRole(session.user.id).then((admin) => {
+              setIsAdmin(admin);
+              setAdminLoading(false);
+            });
           }, 0);
         } else {
           setIsAdmin(false);
+          setAdminLoading(false);
         }
       }
     );
@@ -99,7 +106,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, session, isAdmin, loading, signIn, signUp, signOut }}
+      value={{ user, session, isAdmin, loading, adminLoading, signIn, signUp, signOut }}
     >
       {children}
     </AuthContext.Provider>
