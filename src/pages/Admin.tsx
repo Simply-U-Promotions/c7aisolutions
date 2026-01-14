@@ -12,7 +12,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Loader2, LogOut, Mail, Building2, Calendar, CheckCircle2, XCircle } from "lucide-react";
+import { ArrowLeft, Loader2, LogOut, Mail, Building2, Calendar, CheckCircle2, XCircle, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 import { format } from "date-fns";
@@ -77,6 +77,27 @@ const Admin = () => {
       fetchSubmissions();
     }
   }, [user, isAdmin]);
+
+  const handleDelete = async (id: string) => {
+    const { error } = await supabase
+      .from("contact_submissions")
+      .delete()
+      .eq("id", id);
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to delete submission.",
+        variant: "destructive",
+      });
+    } else {
+      setSubmissions((prev) => prev.filter((s) => s.id !== id));
+      toast({
+        title: "Deleted",
+        description: "Submission has been removed.",
+      });
+    }
+  };
 
   const handleSignOut = async () => {
     await signOut();
@@ -148,6 +169,7 @@ const Admin = () => {
                   <TableHead className="text-muted-foreground">Message</TableHead>
                   <TableHead className="text-muted-foreground">Status</TableHead>
                   <TableHead className="text-muted-foreground">Date</TableHead>
+                  <TableHead className="text-muted-foreground w-[60px]"></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -197,6 +219,16 @@ const Admin = () => {
                         <Calendar className="h-3 w-3" />
                         {format(new Date(submission.created_at), "MMM d, yyyy")}
                       </span>
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                        onClick={() => handleDelete(submission.id)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}
