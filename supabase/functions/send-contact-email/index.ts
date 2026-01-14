@@ -154,6 +154,7 @@ This email was sent from the C7AI Solutions contact form.`;
         company: company || null,
         message,
         email_sent: emailSent,
+        sent_to_email: smtpUser,
       });
 
     if (dbError) {
