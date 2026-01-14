@@ -11,8 +11,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Loader2, LogOut, Mail, Building2, Calendar, CheckCircle2, XCircle } from "lucide-react";
+import { ArrowLeft, Loader2, LogOut, Mail, Building2, Calendar, CheckCircle2, XCircle, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 import { format } from "date-fns";
@@ -32,6 +38,7 @@ const Admin = () => {
   const navigate = useNavigate();
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
   const [loadingSubmissions, setLoadingSubmissions] = useState(true);
+  const [selectedSubmission, setSelectedSubmission] = useState<ContactSubmission | null>(null);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -77,6 +84,27 @@ const Admin = () => {
       fetchSubmissions();
     }
   }, [user, isAdmin]);
+
+  const handleDelete = async (id: string) => {
+    const { error } = await supabase
+      .from("contact_submissions")
+      .delete()
+      .eq("id", id);
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: "Failed to delete submission.",
+        variant: "destructive",
+      });
+    } else {
+      setSubmissions((prev) => prev.filter((s) => s.id !== id));
+      toast({
+        title: "Deleted",
+        description: "Submission has been removed.",
+      });
+    }
+  };
 
   const handleSignOut = async () => {
     await signOut();
@@ -148,11 +176,16 @@ const Admin = () => {
                   <TableHead className="text-muted-foreground">Message</TableHead>
                   <TableHead className="text-muted-foreground">Status</TableHead>
                   <TableHead className="text-muted-foreground">Date</TableHead>
+                  <TableHead className="text-muted-foreground w-[60px]"></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {submissions.map((submission) => (
-                  <TableRow key={submission.id} className="border-border">
+                  <TableRow 
+                    key={submission.id} 
+                    className="border-border cursor-pointer hover:bg-muted/50"
+                    onClick={() => setSelectedSubmission(submission)}
+                  >
                     <TableCell className="font-medium text-foreground">
                       {submission.name}
                     </TableCell>
@@ -160,6 +193,7 @@ const Admin = () => {
                       <a
                         href={`mailto:${submission.email}`}
                         className="text-primary hover:underline"
+                        onClick={(e) => e.stopPropagation()}
                       >
                         {submission.email}
                       </a>
@@ -198,12 +232,82 @@ const Admin = () => {
                         {format(new Date(submission.created_at), "MMM d, yyyy")}
                       </span>
                     </TableCell>
+                    <TableCell>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDelete(submission.id);
+                        }}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </div>
         )}
+
+        <Dialog open={!!selectedSubmission} onOpenChange={() => setSelectedSubmission(null)}>
+          <DialogContent className="max-w-lg">
+            <DialogHeader>
+              <DialogTitle>Message from {selectedSubmission?.name}</DialogTitle>
+            </DialogHeader>
+            {selectedSubmission && (
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p className="text-muted-foreground mb-1">Email</p>
+                    <a
+                      href={`mailto:${selectedSubmission.email}`}
+                      className="text-primary hover:underline"
+                    >
+                      {selectedSubmission.email}
+                    </a>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground mb-1">Company</p>
+                    <p className="text-foreground">
+                      {selectedSubmission.company || "—"}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground mb-1">Date</p>
+                    <p className="text-foreground">
+                      {format(new Date(selectedSubmission.created_at), "MMM d, yyyy 'at' h:mm a")}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground mb-1">Status</p>
+                    {selectedSubmission.email_sent ? (
+                      <Badge variant="default" className="bg-green-500/20 text-green-400 border-green-500/30">
+                        <CheckCircle2 className="h-3 w-3 mr-1" />
+                        Sent
+                      </Badge>
+                    ) : (
+                      <Badge variant="secondary" className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30">
+                        <XCircle className="h-3 w-3 mr-1" />
+                        Pending
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-muted-foreground mb-2">Message</p>
+                  <div className="bg-secondary/50 border border-border rounded-lg p-4">
+                    <p className="text-foreground whitespace-pre-wrap">
+                      {selectedSubmission.message}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
       </main>
     </div>
   );
