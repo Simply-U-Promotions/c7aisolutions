@@ -31,6 +31,7 @@ interface ContactSubmission {
   message: string;
   email_sent: boolean;
   created_at: string;
+  sent_to_email: string | null;
 }
 
 const Admin = () => {
@@ -175,7 +176,8 @@ const Admin = () => {
                   <TableHead className="text-muted-foreground">Company</TableHead>
                   <TableHead className="text-muted-foreground">Message</TableHead>
                   <TableHead className="text-muted-foreground">Status</TableHead>
-                  <TableHead className="text-muted-foreground">Date</TableHead>
+                  <TableHead className="text-muted-foreground">Sent To</TableHead>
+                  <TableHead className="text-muted-foreground">Date & Time</TableHead>
                   <TableHead className="text-muted-foreground w-[60px]"></TableHead>
                 </TableRow>
               </TableHeader>
@@ -227,9 +229,12 @@ const Admin = () => {
                       )}
                     </TableCell>
                     <TableCell className="text-muted-foreground">
+                      {submission.sent_to_email || "—"}
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
                       <span className="inline-flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
-                        {format(new Date(submission.created_at), "MMM d, yyyy")}
+                        {format(new Date(submission.created_at), "MMM d, yyyy h:mm a")}
                       </span>
                     </TableCell>
                     <TableCell>
@@ -276,9 +281,15 @@ const Admin = () => {
                     </p>
                   </div>
                   <div>
-                    <p className="text-muted-foreground mb-1">Date</p>
+                    <p className="text-muted-foreground mb-1">Date & Time</p>
                     <p className="text-foreground">
-                      {format(new Date(selectedSubmission.created_at), "MMM d, yyyy 'at' h:mm a")}
+                      {format(new Date(selectedSubmission.created_at), "MMM d, yyyy 'at' h:mm:ss a")}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground mb-1">Sent To</p>
+                    <p className="text-foreground">
+                      {selectedSubmission.sent_to_email || "—"}
                     </p>
                   </div>
                   <div>
