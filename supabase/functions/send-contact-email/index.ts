@@ -111,6 +111,12 @@ ${message}
 ---
 This email was sent from the C7AI Solutions contact form.`;
 
+      // Escape user inputs to prevent XSS attacks
+      const safeName = escapeHtml(name);
+      const safeEmail = escapeHtml(email);
+      const safeCompany = company ? escapeHtml(company) : '';
+      const safeMessage = escapeHtml(message).replace(/\n/g, '<br>');
+
       const htmlBody = `
 <h2>New Contact Form Submission</h2>
 <p>You have received a new message from the C7AI Solutions website contact form:</p>
@@ -118,22 +124,22 @@ This email was sent from the C7AI Solutions contact form.`;
 <table style="border-collapse: collapse; margin: 20px 0;">
   <tr>
     <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Name</td>
-    <td style="padding: 8px; border: 1px solid #ddd;">${name}</td>
+    <td style="padding: 8px; border: 1px solid #ddd;">${safeName}</td>
   </tr>
   <tr>
     <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Email</td>
-    <td style="padding: 8px; border: 1px solid #ddd;"><a href="mailto:${email}">${email}</a></td>
+    <td style="padding: 8px; border: 1px solid #ddd;"><a href="mailto:${safeEmail}">${safeEmail}</a></td>
   </tr>
   ${company ? `
   <tr>
     <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">Company</td>
-    <td style="padding: 8px; border: 1px solid #ddd;">${company}</td>
+    <td style="padding: 8px; border: 1px solid #ddd;">${safeCompany}</td>
   </tr>
   ` : ''}
 </table>
 
 <h3>Message:</h3>
-<p style="background: #f5f5f5; padding: 15px; border-radius: 5px;">${message.replace(/\n/g, '<br>')}</p>
+<p style="background: #f5f5f5; padding: 15px; border-radius: 5px;">${safeMessage}</p>
 
 <hr style="margin-top: 30px; border: none; border-top: 1px solid #ddd;">
 <p style="color: #888; font-size: 12px;">This email was sent from the C7AI Solutions contact form.</p>
